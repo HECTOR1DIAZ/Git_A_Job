@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            margin-top: 5%;
+            background-color: whitesmoke;
+            padding: 20px;
+
+        }
+
+        .box {
+            padding: 10px;
+            background-color: white;
+            vertical-align: top;
+
+        }
+
+        .box2 {
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
+
+    <title>Log In</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <div class="box">
+                <h3>Registration</h3>
+                {% if messages %}
+                <div class="text-danger">
+                    <div class="card-body">
+                        {% for message in messages %}
+                        {% if message.tags %}
+                        <p class="card-text">{{ message }}</p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="form-row ">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstname">
+
+                </div>
+
+                <div class="form-row">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname">
+
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email">
+                </div>
+
+                <div class="form-row">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+
+                <div class="form-row">
+                    <label for="passwordconfirm">Confirm Password</label>
+                    <input type="password" class="form-control" name="passwordconfirm">
+                </div>
+
+
+                <button type="submit" class="btn btn-info">Register</button>
+            </div>
+        </form>
+        <br>
+
+        <br>
+
+
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <div class="box2">
+                <h3>Log In</h3>
+                <div class="form-row">
+                    <label for="loginEmail">Email</label>
+                    <input type="text" class="form-control" name="loginEmail">
+                </div>
+
+                <div class="form-row">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" class="form-control" name="loginPassword">
+                </div>
+                <button type="submit" class="btn btn-info">Login</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

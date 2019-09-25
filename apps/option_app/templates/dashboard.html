@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Dashboard</title>
+
+    <style>
+        .container {
+            width: 50%;
+            height: 100%;
+            margin-top: 5%;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello {{user.first_name}}!</h1>
+    <br>
+    <a href="/create_page" class="link">New Job!</a> | <a href="/logout" class="link">Log Out</a>
+
+    <div class="container">
+        <h3 class="font-weight-normal">Everyone's jobs</h3>
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Job</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in all_jobs %}
+                <tr>
+                    <td>{{job.title}}</td>
+                    <td>{{job.location}}</td>
+                    <td><a href="/view_job/{{job.id}}" class="link">View</a>
+
+                        {% if request.session.user_id == job.worker.id %}
+                        | <a href="/delete/{{job.id}}" class="link">Delete</a> | <a href="view_job/{{job.id}}/edit" class="link">Edit</a>
+                        {% endif %}
+
+                    </td>
+                </tr>
+                {% endfor  %}
+
+            </tbody>
+        </table>
+        <br>
+
+
+        </form>
+    </div>
+</body>
+
+</html>
